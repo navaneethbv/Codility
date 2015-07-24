@@ -75,8 +75,8 @@ I have solved **48 / 49** problems before 2014/12/9.
 - [x] [MaxNonoverlappingSegments](https://github.com/acprimer/Codility/blob/master/src/Lesson14/MaxNonoverlappingSegments.java)
 
 ##Lesson 15 [Dynamic programming](https://codility.com/programmers/lessons/16)
-- [x] [NumberSolitaire](https://github.com/acprimer/Codility/blob/master/src/Lesson14/MaxNonoverlappingSegments.java)
-- [ ] [MinAbsSum]
+- [x] [NumberSolitaire](https://github.com/acprimer/Codility/blob/master/src/Lesson15/MaxNonoverlappingSegments.java)
+- [x] [MinAbsSum](https://github.com/acprimer/Codility/blob/master/src/Lesson15/MinAbsSum.java)
 
 ##Lesson 99 [Future training](https://codility.com/programmers/lessons/14)
 - [x] [TreeHeight](https://github.com/acprimer/Codility/blob/master/src/Lesson99/TreeHeight.java)

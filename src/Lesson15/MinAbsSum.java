@@ -1,5 +1,7 @@
 package Lesson15;
 
+import java.util.Arrays;
+
 /**
  * Created by yaodh on 2014/12/12.
  * 1. MinAbsSum
@@ -30,7 +32,88 @@ package Lesson15;
  * Elements of input arrays can be modified.
  */
 public class MinAbsSum {
+    // https://codility.com/demo/results/demoRXE7WF-V59/
+//    static final int MAX_V = 105;
+//
+//    public void zeroOnePack(int[] dp, int w) {
+//        for (int i = dp.length - 1; i >= w; i--) {
+//            dp[i] = Math.max(dp[i], dp[i - w] + w);
+//        }
+//    }
+//
+//    public int solution(int[] A) {
+//        int n = A.length;
+//        if (n == 0) {
+//            return 0;
+//        }
+//
+//        int sum = 0, max = 0;
+//        int c[] = new int[MAX_V];
+//        for (int i = 0; i < n; i++) {
+//            A[i] = Math.abs(A[i]);
+//            c[A[i]]++;
+//            sum += A[i];
+//            max = Math.max(max, A[i]);
+//        }
+//
+//        int dp[] = new int[sum / 2 + 1];
+//        for (int i = 1; i <= max; i++) {
+//            int k = 1;
+//            while (c[i] > 0) {
+//                if (k > c[i]) {
+//                    k = c[i];
+//                }
+//                c[i] -= k;
+//                zeroOnePack(dp, i * k);
+//                k <<= 1;
+//            }
+//        }
+//        return sum - dp[sum / 2] * 2;
+//    }
+
+
+    // https://codility.com/demo/results/demoCJT2RF-T4F/
+    static final int MAX_V = 105;
+
     public int solution(int[] A) {
-        return 0;
+        int n = A.length;
+        if (n == 0) {
+            return 0;
+        }
+
+        int sum = 0, max = 0;
+        int count[] = new int[MAX_V];
+        for (int i = 0; i < n; i++) {
+            A[i] = Math.abs(A[i]);
+            count[A[i]]++;
+            sum += A[i];
+            max = Math.max(max, A[i]);
+        }
+
+        int dp[] = new int[sum + 1];
+        Arrays.fill(dp, -1);
+        dp[0] = 0;
+        for (int i = 1; i <= max; i++) {
+            if (count[i] <= 0) continue;
+            for (int j = 0; j <= sum; j++) {
+                if (dp[j] >= 0) {
+                    dp[j] = count[i];
+                } else if (j >= i && dp[j - i] > 0) {
+                    dp[j] = dp[j - i] - 1;
+                }
+            }
+        }
+        int ans = sum;
+        for (int p = 0; p * 2 <= sum; p++) {
+            if (dp[p] >= 0) {
+                ans = Math.min(ans, Math.abs(sum - p * 2));
+            }
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int ans = new MinAbsSum().solution(new int[]{1, 5, 2, -2, 1});
+        System.out.println(ans);
     }
 }
